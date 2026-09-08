@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LinguaVerse - Ứng dụng học ngôn ngữ Trung, Anh, Nhật với flashcard thông minh và dịch thuật tức thì. Trải nghiệm học tập hiện đại và mượt mà.">
+    <title>LinguaVerse — Học Tiếng Trung · Anh · Nhật</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="logo-char" style="--i:0">L</span>
+                <span class="logo-char" style="--i:1">i</span>
+                <span class="logo-char" style="--i:2">n</span>
+                <span class="logo-char" style="--i:3">g</span>
+                <span class="logo-char" style="--i:4">u</span>
+                <span class="logo-char" style="--i:5">a</span>
+                <span class="logo-char" style="--i:6">V</span>
+                <span class="logo-char" style="--i:7">e</span>
+                <span class="logo-char" style="--i:8">r</span>
+                <span class="logo-char" style="--i:9">s</span>
+                <span class="logo-char" style="--i:10">e</span>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aurora Background -->
+    <div class="aurora-bg">
+        <div class="aurora-layer aurora-1"></div>
+        <div class="aurora-layer aurora-2"></div>
+        <div class="aurora-layer aurora-3"></div>
+        <div class="aurora-layer aurora-4"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                        <path d="M12 20 L20 12 L28 20 L20 28 Z" fill="url(#logoGrad)" opacity="0.3"/>
+                        <path d="M16 20 L20 16 L24 20 L20 24 Z" fill="url(#logoGrad)"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#6C63FF"/>
+                                <stop offset="100%" stop-color="#FF6B9D"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span>LinguaVerse</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-section="home">Trang chủ</a>
+                <a href="#features" class="nav-link" data-section="features">Tính năng</a>
+                <a href="#flashcards" class="nav-link" data-section="flashcards">Flashcard</a>
+                <a href="#translator" class="nav-link" data-section="translator">Dịch thuật</a>
+                <a href="#ecosystem" class="nav-link" data-section="ecosystem">Hệ sinh thái</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="btn-primary nav-cta">Bắt đầu học</button>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-links">
+            <a href="#home" class="mobile-link">Trang chủ</a>
+            <a href="#features" class="mobile-link">Tính năng</a>
+            <a href="#flashcards" class="mobile-link">Flashcard</a>
+            <a href="#translator" class="mobile-link">Dịch thuật</a>
+            <a href="#ecosystem" class="mobile-link">Hệ sinh thái</a>
+            <button class="btn-primary mobile-cta">Bắt đầu học</button>
+        </div>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section id="home" class="section hero-section">
+        <div class="parallax-container">
+            <div class="hero-content" data-speed="0.3">
+                <div class="hero-badge reveal-up">
+                    <span class="badge-dot"></span>
+                    <span>Nền tảng học ngôn ngữ #1 Việt Nam</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line reveal-up" style="--delay: 0.1s">Khám phá</span>
+                    <span class="title-line reveal-up" style="--delay: 0.2s">
+                        <span class="gradient-text">Ngôn ngữ mới</span>
+                    </span>
+                    <span class="title-line reveal-up" style="--delay: 0.3s">Mỗi ngày.</span>
+                </h1>
+                <p class="hero-subtitle reveal-up" style="--delay: 0.4s">
+                    Học Tiếng Trung, Tiếng Anh & Tiếng Nhật với công nghệ AI thông minh.
+                    Flashcard tương tác, dịch thuật tức thì và hệ sinh thái học tập toàn diện.
+                </p>
+                <div class="hero-cta reveal-up" style="--delay: 0.5s">
+                    <button class="btn-primary btn-lg" onclick="document.getElementById('flashcards').scrollIntoView({behavior:'smooth'})">
+                        <span>Trải nghiệm ngay</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="btn-glass btn-lg" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+                        <span>Tìm hiểu thêm</span>
+                    </button>
+                </div>
+                <!-- Language Orbit -->
+                <div class="language-orbit reveal-up" style="--delay: 0.6s">
+                    <div class="orbit-ring ring-1">
+                        <div class="orbit-item" style="--angle: 0deg">
+                            <span class="orbit-char">中</span>
+                        </div>
+                        <div class="orbit-item" style="--angle: 120deg">
+                            <span class="orbit-char">A</span>
+                        </div>
+                        <div class="orbit-item" style="--angle: 240deg">
+                            <span class="orbit-char">あ</span>
+                        </div>
+                    </div>
+                    <div class="orbit-ring ring-2">
+                        <div class="orbit-item small" style="--angle: 60deg">
+                            <span class="orbit-char">學</span>
+                        </div>
+                        <div class="orbit-item small" style="--angle: 180deg">
+                            <span class="orbit-char">Hi</span>
+                        </div>
+                        <div class="orbit-item small" style="--angle: 300deg">
+                            <span class="orbit-char">日</span>
+                        </div>
+                    </div>
+                    <div class="orbit-center">
+                        <div class="orbit-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Cuộn xuống</span>
+        </div>
+    </section>
+
+    <!-- Section 2: Language Stats (Apple-style sticky scroll) -->
+    <section class="section stats-section" id="stats">
+        <div class="stats-sticky">
+            <div class="stats-counter" data-count="3">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Ngôn ngữ</span>
+            </div>
+            <div class="stats-counter" data-count="5000">
+                <span class="stat-number">5000+</span>
+                <span class="stat-label">Từ vựng</span>
+            </div>
+            <div class="stats-counter" data-count="100">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Bài học</span>
+            </div>
+            <div class="stats-counter" data-count="50000">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Người học</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Features (Apple-style cards) -->
+    <section id="features" class="section features-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag reveal-up">Tính năng nổi bật</span>
+                <h2 class="section-title reveal-up" style="--delay: 0.1s">
+                    Tất cả những gì bạn cần<br>
+                    <span class="gradient-text">trong một nền tảng.</span>
+                </h2>
+                <p class="section-desc reveal-up" style="--delay: 0.2s">
+                    Được thiết kế với công nghệ tiên tiến nhất để mang lại trải nghiệm học tập tối ưu.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature Card 1 -->
+                <div class="feature-card reveal-up" style="--delay: 0.1s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="8" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                            <path d="M16 20h16M16 28h10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="38" cy="34" r="8" fill="url(#feat1Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat1Grad"><stop stop-color="#6C63FF"/><stop offset="1" stop-color="#FF6B9D"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Thông minh</h3>
+                    <p>Hệ thống lặp lại cách quãng (SRS) giúp bạn ghi nhớ từ vựng hiệu quả. Flip card với animation mượt mà.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="feature-card reveal-up" style="--delay: 0.2s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M8 12h14v24H8z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M26 12h14v24H26z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M22 20l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="38" cy="10" r="8" fill="url(#feat2Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat2Grad"><stop stop-color="#00D2FF"/><stop offset="1" stop-color="#6C63FF"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Dịch thuật Tức thì</h3>
+                    <p>Dịch nhanh giữa Việt-Trung-Anh-Nhật với phát âm chuẩn và ví dụ ngữ cảnh thực tế.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="feature-card reveal-up" style="--delay: 0.3s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2.5"/>
+                            <path d="M24 6v36M6 24h36" stroke="currentColor" stroke-width="2.5"/>
+                            <path d="M10 14c4 0 6 4 14 4s10-4 14-4" stroke="currentColor" stroke-width="2.5"/>
+                            <circle cx="38" cy="38" r="8" fill="url(#feat3Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat3Grad"><stop stop-color="#FF6B9D"/><stop offset="1" stop-color="#FFB347"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Đa Ngôn ngữ</h3>
+                    <p>Tiếng Trung (简体/繁體), Tiếng Anh (US/UK), Tiếng Nhật (Hiragana/Katakana/Kanji) — học tất cả tại đây.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="feature-card reveal-up" style="--delay: 0.4s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4l6 12h14l-11 8 4 14-13-9-13 9 4-14L4 16h14z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                            <circle cx="38" cy="6" r="8" fill="url(#feat4Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat4Grad"><stop stop-color="#FFB347"/><stop offset="1" stop-color="#00D2FF"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Gamification</h3>
+                    <p>Hệ thống điểm, streak, thành tựu và bảng xếp hạng giúp bạn luôn có động lực học tập.</p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="feature-card reveal-up" style="--delay: 0.5s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4v8M4 24h8M44 24h-8M24 44v-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2.5"/>
+                            <circle cx="24" cy="24" r="4" fill="currentColor"/>
+                            <circle cx="10" cy="10" r="8" fill="url(#feat5Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat5Grad"><stop stop-color="#6C63FF"/><stop offset="1" stop-color="#00D2FF"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>AI Phát âm</h3>
+                    <p>Công nghệ Text-to-Speech tiên tiến với giọng đọc tự nhiên cho từng ngôn ngữ.</p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="feature-card reveal-up" style="--delay: 0.6s">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="8" y="4" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                            <path d="M16 16h16M16 24h16M16 32h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="40" cy="40" r="8" fill="url(#feat6Grad)" opacity="0.3"/>
+                            <defs><linearGradient id="feat6Grad"><stop stop-color="#FF6B9D"/><stop offset="1" stop-color="#6C63FF"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Offline Mode</h3>
+                    <p>Tải bài học về máy và học mọi lúc mọi nơi, không cần kết nối internet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Interactive Flashcards -->
+    <section id="flashcards" class="section flashcard-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag reveal-up">Flashcard tương tác</span>
+                <h2 class="section-title reveal-up" style="--delay: 0.1s">
+                    Học từ vựng<br>
+                    <span class="gradient-text">chưa bao giờ dễ hơn.</span>
+                </h2>
+                <p class="section-desc reveal-up" style="--delay: 0.2s">
+                    Nhấn vào thẻ để lật và xem nghĩa. Chọn ngôn ngữ bạn muốn học.
+                </p>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="lang-selector reveal-up" style="--delay: 0.3s">
+                <button class="lang-btn active" data-lang="zh">
+                    <span class="lang-flag">🇨🇳</span>
+                    <span class="lang-name">Tiếng Trung</span>
+                </button>
+                <button class="lang-btn" data-lang="en">
+                    <span class="lang-flag">🇬🇧</span>
+                    <span class="lang-name">Tiếng Anh</span>
+                </button>
+                <button class="lang-btn" data-lang="ja">
+                    <span class="lang-flag">🇯🇵</span>
+                    <span class="lang-name">Tiếng Nhật</span>
+                </button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs reveal-up" style="--delay: 0.35s">
+                <button class="cat-tab active" data-category="daily">Hàng ngày</button>
+                <button class="cat-tab" data-category="travel">Du lịch</button>
+                <button class="cat-tab" data-category="business">Kinh doanh</button>
+                <button class="cat-tab" data-category="food">Ẩm thực</button>
+                <button class="cat-tab" data-category="greeting">Chào hỏi</button>
+            </div>
+
+            <!-- Flashcard Deck -->
+            <div class="flashcard-deck reveal-up" style="--delay: 0.4s">
+                <div class="deck-controls">
+                    <button class="deck-btn prev-btn" id="prevCard" aria-label="Previous card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <div class="deck-counter">
+                        <span id="currentIndex">1</span> / <span id="totalCards">8</span>
+                    </div>
+                    <button class="deck-btn next-btn" id="nextCard" aria-label="Next card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+
+                <div class="flashcard-container" id="flashcardContainer">
+                    <div class="flashcard" id="mainFlashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-lang-badge" id="cardLangBadge">中文</div>
+                                <div class="card-word" id="cardWord">你好</div>
+                                <div class="card-pinyin" id="cardPinyin">nǐ hǎo</div>
+                                <div class="card-hint">Nhấn để lật thẻ</div>
+                                <button class="card-speak" id="speakFront" aria-label="Phát âm">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                                </button>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-lang-badge">Việt</div>
+                                <div class="card-meaning" id="cardMeaning">Xin chào</div>
+                                <div class="card-example" id="cardExample">
+                                    <strong>Ví dụ:</strong> 你好，很高兴认识你。
+                                </div>
+                                <div class="card-example-meaning" id="cardExampleMeaning">
+                                    Xin chào, rất vui được gặp bạn.
+                                </div>
+                                <div class="card-hint">Nhấn để lật lại</div>
+                                <button class="card-speak" id="speakBack" aria-label="Phát âm">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Buttons -->
+                <div class="difficulty-buttons">
+                    <button class="diff-btn diff-hard" data-diff="hard">
+                        <span>😓</span> Khó
+                    </button>
+                    <button class="diff-btn diff-medium" data-diff="medium">
+                        <span>🤔</span> Bình thường
+                    </button>
+                    <button class="diff-btn diff-easy" data-diff="easy">
+                        <span>😄</span> Dễ
+                    </button>
+                    <button class="diff-btn diff-known" data-diff="known">
+                        <span>🎯</span> Đã biết
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="deck-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 12.5%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="stat-learned">✅ Đã học: <strong id="learnedCount">0</strong></span>
+                        <span class="stat-remaining">📚 Còn lại: <strong id="remainingCount">8</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Translator -->
+    <section id="translator" class="section translator-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag reveal-up">Dịch thuật</span>
+                <h2 class="section-title reveal-up" style="--delay: 0.1s">
+                    Dịch tức thì<br>
+                    <span class="gradient-text">mọi ngôn ngữ.</span>
+                </h2>
+            </div>
+
+            <div class="translator-box reveal-up" style="--delay: 0.2s">
+                <div class="translator-panel source-panel">
+                    <div class="panel-header">
+                        <select class="lang-select" id="sourceLang">
+                            <option value="vi">🇻🇳 Tiếng Việt</option>
+                            <option value="zh">🇨🇳 Tiếng Trung</option>
+                            <option value="en">🇬🇧 Tiếng Anh</option>
+                            <option value="ja">🇯🇵 Tiếng Nhật</option>
+                        </select>
+                    </div>
+                    <textarea class="translator-input" id="sourceText" placeholder="Nhập văn bản cần dịch..." rows="5"></textarea>
+                    <div class="panel-actions">
+                        <button class="action-btn" id="speakSource" aria-label="Phát âm">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14"/></svg>
+                        </button>
+                        <button class="action-btn" id="copySource" aria-label="Sao chép">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </button>
+                        <span class="char-count" id="charCount">0 / 5000</span>
+                    </div>
+                </div>
+
+                <button class="swap-btn" id="swapLangs" aria-label="Hoán đổi ngôn ngữ">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+                </button>
+
+                <div class="translator-panel target-panel">
+                    <div class="panel-header">
+                        <select class="lang-select" id="targetLang">
+                            <option value="zh">🇨🇳 Tiếng Trung</option>
+                            <option value="vi">🇻🇳 Tiếng Việt</option>
+                            <option value="en">🇬🇧 Tiếng Anh</option>
+                            <option value="ja">🇯🇵 Tiếng Nhật</option>
+                        </select>
+                    </div>
+                    <div class="translator-output" id="targetText">
+                        <span class="placeholder-text">Bản dịch sẽ xuất hiện ở đây...</span>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="action-btn" id="speakTarget" aria-label="Phát âm">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14"/></svg>
+                        </button>
+                        <button class="action-btn" id="copyTarget" aria-label="Sao chép">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary translate-btn reveal-up" id="translateBtn" style="--delay: 0.3s">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span>Dịch ngay</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 6: Ecosystem / Learning Path -->
+    <section id="ecosystem" class="section ecosystem-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag reveal-up">Hệ sinh thái học tập</span>
+                <h2 class="section-title reveal-up" style="--delay: 0.1s">
+                    Con đường học tập<br>
+                    <span class="gradient-text">được thiết kế cho bạn.</span>
+                </h2>
+                <p class="section-desc reveal-up" style="--delay: 0.2s">
+                    Từ người mới bắt đầu đến chuyên gia — hệ thống bài học được cá nhân hóa.
+                </p>
+            </div>
+
+            <!-- Learning Path Timeline -->
+            <div class="learning-path reveal-up" style="--delay: 0.3s">
+                <div class="path-line"></div>
+                
+                <div class="path-node" data-level="1">
+                    <div class="node-marker">
+                        <div class="node-icon">🌱</div>
+                    </div>
+                    <div class="node-content">
+                        <div class="node-level">Level 1</div>
+                        <h3>Khởi đầu</h3>
+                        <p>Bảng chữ cái, số đếm, chào hỏi cơ bản</p>
+                        <div class="node-tags">
+                            <span>50 từ</span><span>10 bài</span><span>5 giờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-node" data-level="2">
+                    <div class="node-marker">
+                        <div class="node-icon">🌿</div>
+                    </div>
+                    <div class="node-content">
+                        <div class="node-level">Level 2</div>
+                        <h3>Cơ bản</h3>
+                        <p>Giao tiếp hàng ngày, mua sắm, ăn uống</p>
+                        <div class="node-tags">
+                            <span>200 từ</span><span>20 bài</span><span>15 giờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-node" data-level="3">
+                    <div class="node-marker">
+                        <div class="node-icon">🌳</div>
+                    </div>
+                    <div class="node-content">
+                        <div class="node-level">Level 3</div>
+                        <h3>Trung cấp</h3>
+                        <p>Ngữ pháp nâng cao, đọc hiểu, viết luận</p>
+                        <div class="node-tags">
+                            <span>800 từ</span><span>40 bài</span><span>40 giờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-node" data-level="4">
+                    <div class="node-marker">
+                        <div class="node-icon">🏔️</div>
+                    </div>
+                    <div class="node-content">
+                        <div class="node-level">Level 4</div>
+                        <h3>Nâng cao</h3>
+                        <p>Thành ngữ, văn hóa, giao tiếp chuyên sâu</p>
+                        <div class="node-tags">
+                            <span>2000 từ</span><span>60 bài</span><span>80 giờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-node" data-level="5">
+                    <div class="node-marker">
+                        <div class="node-icon">⭐</div>
+                    </div>
+                    <div class="node-content">
+                        <div class="node-level">Level 5</div>
+                        <h3>Chuyên gia</h3>
+                        <p>Luyện thi JLPT, HSK, IELTS/TOEFL</p>
+                        <div class="node-tags">
+                            <span>5000+ từ</span><span>100+ bài</span><span>200+ giờ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecosystem Cards -->
+            <div class="eco-grid">
+                <div class="eco-card reveal-up" style="--delay: 0.1s">
+                    <div class="eco-visual">
+                        <div class="eco-circle" style="--color1: #6C63FF; --color2: #FF6B9D">
+                            <span>📖</span>
+                        </div>
+                    </div>
+                    <h3>Từ điển Thông minh</h3>
+                    <p>Tra từ kèm phiên âm, ví dụ, từ đồng/trái nghĩa và hình ảnh minh họa.</p>
+                </div>
+                <div class="eco-card reveal-up" style="--delay: 0.2s">
+                    <div class="eco-visual">
+                        <div class="eco-circle" style="--color1: #00D2FF; --color2: #6C63FF">
+                            <span>🎮</span>
+                        </div>
+                    </div>
+                    <h3>Trò chơi Ngôn ngữ</h3>
+                    <p>Mini-game ghép từ, đoán nghĩa, nghe-chọn giúp học tập trở nên thú vị hơn.</p>
+                </div>
+                <div class="eco-card reveal-up" style="--delay: 0.3s">
+                    <div class="eco-visual">
+                        <div class="eco-circle" style="--color1: #FFB347; --color2: #FF6B9D">
+                            <span>👥</span>
+                        </div>
+                    </div>
+                    <h3>Cộng đồng</h3>
+                    <p>Kết nối với người bản xứ, thực hành giao tiếp và chia sẻ kinh nghiệm học.</p>
+                </div>
+                <div class="eco-card reveal-up" style="--delay: 0.4s">
+                    <div class="eco-visual">
+                        <div class="eco-circle" style="--color1: #FF6B9D; --color2: #FFB347">
+                            <span>📊</span>
+                        </div>
+                    </div>
+                    <h3>Theo dõi Tiến độ</h3>
+                    <p>Dashboard chi tiết theo dõi streak, thời gian học và kỹ năng đạt được.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: CTA -->
+    <section class="section cta-section">
+        <div class="cta-content">
+            <div class="cta-bg-text" aria-hidden="true">LEARN</div>
+            <h2 class="reveal-up">Sẵn sàng bắt đầu<br><span class="gradient-text">hành trình mới?</span></h2>
+            <p class="reveal-up" style="--delay: 0.1s">Tham gia cùng hơn 50,000 người đang học ngôn ngữ mỗi ngày trên LinguaVerse.</p>
+            <div class="cta-buttons reveal-up" style="--delay: 0.2s">
+                <button class="btn-primary btn-xl">
+                    <span>Đăng ký miễn phí</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+            <div class="cta-trust reveal-up" style="--delay: 0.3s">
+                <div class="trust-avatars">
+                    <div class="trust-avatar" style="--hue: 250">H</div>
+                    <div class="trust-avatar" style="--hue: 340">M</div>
+                    <div class="trust-avatar" style="--hue: 180">L</div>
+                    <div class="trust-avatar" style="--hue: 30">T</div>
+                    <div class="trust-avatar" style="--hue: 120">N</div>
+                </div>
+                <span>50,000+ người đã tham gia</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="18" stroke="url(#footLogoGrad)" stroke-width="2.5"/>
+                                <path d="M16 20 L20 16 L24 20 L20 24 Z" fill="url(#footLogoGrad)"/>
+                                <defs><linearGradient id="footLogoGrad" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#FF6B9D"/></linearGradient></defs>
+                            </svg>
+                        </div>
+                        <span>LinguaVerse</span>
+                    </div>
+                    <p>Nền tảng học ngôn ngữ thông minh cho người Việt.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Sản phẩm</h4>
+                        <a href="#">Flashcard</a>
+                        <a href="#">Dịch thuật</a>
+                        <a href="#">Trò chơi</a>
+                        <a href="#">Bài học</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Ngôn ngữ</h4>
+                        <a href="#">Tiếng Trung</a>
+                        <a href="#">Tiếng Anh</a>
+                        <a href="#">Tiếng Nhật</a>
+                        <a href="#">Khác</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Về chúng tôi</h4>
+                        <a href="#">Giới thiệu</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Tuyển dụng</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LinguaVerse. Tất cả quyền được bảo lưu.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            <span id="toastMessage">Đã sao chép!</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
